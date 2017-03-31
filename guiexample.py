@@ -6,6 +6,10 @@ class gui_example(object):
 
     def __init__(self):
         self.frame = JFrame("GUI example")
+        # Do not define DS-5 debugger contexts here
+
+    def initGUI(self, ec):
+        self.dscmdEC = ec
 
         self.dscmdPanel = JPanel()
         self.frame.add(self.dscmdPanel)
@@ -23,12 +27,14 @@ class gui_example(object):
     def rundscmd(self,event):
         dscmd = self.dscmdField.text
         print dscmd
-
-        # Obtain the first execution context
-        debugger = Debugger()
-        ec = debugger.getCurrentExecutionContext()
         ec.executeDSCommand(dscmd)
 
 if __name__ == '__main__':
     print "GUI example"
-    gui_example() 
+
+    # Obtain the first execution context
+    debugger = Debugger()
+    ec = debugger.getCurrentExecutionContext()
+
+    gui = gui_example()
+    gui.initGUI(ec)
