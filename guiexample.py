@@ -4,11 +4,9 @@ from javax.swing import JButton, JFrame, JPanel, JLabel, JTextField
 
 class gui_example(object):
 
-    def __init__(self):
+    def __init__(self, ec):
         self.frame = JFrame("GUI example")
-        # Do not define DS-5 debugger contexts here
 
-    def initGUI(self, ec):
         self.dscmdEC = ec
 
         self.dscmdPanel = JPanel()
@@ -36,5 +34,4 @@ if __name__ == '__main__':
     debugger = Debugger()
     ec = debugger.getCurrentExecutionContext()
 
-    gui = gui_example()
-    gui.initGUI(ec)
+    gui_example(ec)
